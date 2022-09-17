@@ -1,19 +1,23 @@
-const hourEl = document.querySelector(".hour");
-const minuteEl = document.querySelector(".minute");
-const secondEl = document.querySelector(".second");
+const hour = document.querySelector(".hour");
+const minute = document.querySelector(".minute");
+const second = document.querySelector(".second");
 
 function updateClock(){
+
     const currentDate = new Date();
-    setTimeout(updateClock , 1000);
-    const hour = currentDate.getHours();
-    const minute = currentDate.getMinutes();
-    const second = currentDate.getSeconds();
-    const hourDeg = (hour / 12) * 360;
-    hourEl.style.transform = 'rotate(${hourDeg}deg)';
-    const minuteDeg = (minute / 60) * 360;
-    minuteEl.style.transform = 'rotate(${minuteDeg}deg)';
-    const secondDeg = (second / 60) *360;
-    secondEl.style.transform = 'rotate(${secondDeg}deg)';
+
+    const getSecond = currentDate.getSeconds();
+    const getMinute = currentDate.getMinutes();
+    const getHour = currentDate.getHours();
+    
+    const secondDeg = (getSecond / 60) *360;
+    const minuteDeg = (getMinute / 60) * 360;
+    const hourDeg = (getHour / 12) * 360;
+
+    second.style.transform = `rotate(${secondDeg}deg)`;
+    minute.style.transform = `rotate(${minuteDeg}deg)`;
+    hour.style.transform = `rotate(${hourDeg}deg)`
+    
 }
 
-updateClock();
+setInterval(updateClock, 1000);
